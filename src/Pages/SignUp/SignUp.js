@@ -55,8 +55,6 @@ const SignUp = () => {
                     <Form.Control type={showPassword ? "text" : "password"} placeholder="Comfirm Password" name='confirmPassword' onBlur={handleBlur} className={error ? "text-danger" : "text-success"} />
                     <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={() => handleShowPassword()} />
                 </div>
-                {/* Show password Button */}
-                <small onClick={() => handleShowPassword()} className={showPassword ? "text-success" : ""}>Show Password</small>
                 {/* Password Error Display */}
                 {error ? <small className='text-danger'>Passwords aren't not same</small> : ""}
             </Form.Group>
