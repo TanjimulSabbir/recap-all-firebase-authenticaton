@@ -1,0 +1,23 @@
+.form {
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 1px lightblue solid;
+    border-radius: 5px;
+    padding: 40px;
+}
+
+.showPassword {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.eyeDiv {
+    position: relative;
+}
+
+.passEye {
+    position: absolute;
+    top: 25%;
+    right: 2%;
+}

@@ -1,0 +1,11 @@
+nav {
+    text-align: center;
+    background-color: rgb(1, 70, 135);
+    padding: 20px 0;
+}
+
+nav a {
+    text-decoration: none;
+    margin-left: 2rem;
+    color: black;
+}

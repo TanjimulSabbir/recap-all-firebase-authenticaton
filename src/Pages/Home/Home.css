@@ -1,0 +1,13 @@
+.carDiv {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 10px;
+}
+
+.carCard {
+    background: rgb(184, 51, 3);
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+
+}
