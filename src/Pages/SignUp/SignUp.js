@@ -45,6 +45,7 @@ const SignUp = () => {
                 <Form.Label>Password</Form.Label>
                 <div className='eyeDiv'>
                     <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" name='password' onBlur={handleBlur} className={error ? "text-danger" : "text-success"} />
+                    {/*Eye Icon */}
                     <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={() => handleShowPassword()} />
                 </div>
             </Form.Group>
@@ -52,11 +53,14 @@ const SignUp = () => {
             <Form.Group className="mb-1 password" controlId="formBasicComfirmPassword">
                 <Form.Label>Comfirm Password</Form.Label>
                 <div className="eyeDiv">
-                    <Form.Control type={showPassword ? "text" : "password"} placeholder="Comfirm Password" name='confirmPassword' onBlur={handleBlur} className={error ? "text-danger" : "text-success"} />
+                    <Form.Control type={showPassword ? "text" : "password"} placeholder="Comfirm Password" name='confirmPassword' onBlur={handleBlur}
+                        className={error ? "text-danger" : "text-success"} />
                     <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={() => handleShowPassword()} />
                 </div>
                 {/* Password Error Display */}
-                {error ? <small className='text-danger'>Passwords aren't not same</small> : ""}
+                {password.length > 7 ? (confirmPassword.length > 7 ? (<small>
+                    {error ? <i className='text-danger'>Passwords aren't not same </i> : ""} </small>) : <small><i>Password must have atleast 8 character</i></small>) : (<small><i>Password must have atleast 8 character</i></small>)
+                }
             </Form.Group>
             {/* Input Checkbox  */}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
