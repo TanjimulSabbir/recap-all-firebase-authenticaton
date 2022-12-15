@@ -1,10 +1,10 @@
 .form {
-    width: 40%;
+    width: 45%;
     margin: 0 auto;
     margin-top: 10px;
     border: 1px lightblue solid;
     border-radius: 5px;
-    padding: 40px;
+    padding: 30px;
 }
 
 .showPassword {
@@ -20,4 +20,11 @@
     position: absolute;
     top: 25%;
     right: 2%;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 20px;
 }

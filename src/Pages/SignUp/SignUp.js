@@ -1,37 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faDisplay, faEye, faEyeSlash, faFaceGrinWink, faShower } from '@fortawesome/free-solid-svg-icons'
-
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import './SignUp.css'
-import { icon } from '@fortawesome/fontawesome-svg-core';
+import useSignUp from '../../Hooks/useSignUp';
 
-const SignUp = () => {
-    const [error, setError] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-
-    const [inputUser, setInputUser] = useState({ email: '', password: '', confirmPassword: '' });
-    const { email, password, confirmPassword } = inputUser;
-
-    const handleBlur = (event) => {
-        setInputUser(() => {
-            return { ...inputUser, [event.target.name]: event.target.value }
-        })
-        if (password === confirmPassword) {
-            return setError(false);
-        }
-    }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (password !== confirmPassword) {
-            return setError(true)
-        }
-        setError(false)
-    }
-
-    const handleShowPassword = () => {
-        setShowPassword(!showPassword)
-    }
+const SignUp = (props) => {
+    const { error, showPassword, handleBlur, handleSubmit, handleShowPassword, password, confirmPassword, SignUpUser, SignUpLoading, SignUpError } = useSignUp();
 
     return (
         <form className='form' onSubmit={handleSubmit}>
@@ -46,7 +21,7 @@ const SignUp = () => {
                 <div className='eyeDiv'>
                     <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" name='password' onBlur={handleBlur} className={error ? "text-danger" : "text-success"} />
                     {/*Eye Icon */}
-                    <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={() => handleShowPassword()} />
+                    <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={handleShowPassword} />
                 </div>
             </Form.Group>
             {/*Form Input Confirm Password */}
@@ -55,19 +30,16 @@ const SignUp = () => {
                 <div className="eyeDiv">
                     <Form.Control type={showPassword ? "text" : "password"} placeholder="Comfirm Password" name='confirmPassword' onBlur={handleBlur}
                         className={error ? "text-danger" : "text-success"} />
-                    <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={() => handleShowPassword()} />
+                    <FontAwesomeIcon className={`passEye ${showPassword ? "text-success" : ""}`} icon={showPassword ? faEye : faEyeSlash} onClick={handleShowPassword} />
                 </div>
                 {/* Password Error Display */}
-                {password.length > 7 ? (confirmPassword.length > 7 ? (<small>
-                    {error ? <i className='text-danger'>Passwords aren't not same </i> : ""} </small>) : <small><i>Password must have atleast 8 character</i></small>) : (<small><i>Password must have atleast 8 character</i></small>)
+                {(password?.length > 7 ? (confirmPassword?.length > 7 ? (<small>
+                    {error ? <span className='text-danger'>Passwords aren't not same </span> : ""} </small>) : <small><i>Password must have atleast 8 character</i></small>) : (<small><i>Password must have atleast 8 character</i></small>))
                 }
-            </Form.Group>
-            {/* Input Checkbox  */}
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <small> <Form.Check type="checkbox" label="Check me out" name='terms' /></small>
+                {(SignUpLoading ? "loading..." : SignUpError ? <small className='text-danger'>{SignUpError?.message}</small> : SignUpUser && <small className='text-success'>Sign-Up Successful</small>)}
             </Form.Group>
             {/* Form Submit Button */}
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className='submit-btn'>
                 Submit
             </Button>
         </form>
